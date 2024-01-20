@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  postgrestri:
+    image: postgres
+    container_name: postegres-tricount-db
+    environment:
+      POSTGRES_USER: tricount
+      POSTGRES_PASSWORD: tricount-pwd
+      POSTGRES_DB: tricount
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  app:
+    image: tricount-back
+    ports:
+    - "3000:3000"
+    environment:
+      PG_USER: "tricount"
+      PG_HOST: "postgrestri"
+      PG_DATABASE: "tricount"
+      PG_PASSWORD: "tricount-pwd"
+      PG_PORT: "5432"
+      ORIGIN: "http://localhost:3000"
+      PRIVATE_KEY: "azeReed3R23RF32f"
+      COOKIE_DOMAIN: "localhost:3000"
+  
+
+
+volumes:
+  pg_data:
