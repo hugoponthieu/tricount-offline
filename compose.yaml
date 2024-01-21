@@ -12,8 +12,8 @@ services:
       - "5432:5432"
     volumes:
       - pg_data:/var/lib/postgresql/data
-  app:
-    image: tricount-back
+  back:
+    image: hugo08/hugo_repo:triback-20
     ports:
     - "3000:3000"
     environment:
@@ -25,6 +25,12 @@ services:
       ORIGIN: "http://localhost:3000"
       PRIVATE_KEY: "azeReed3R23RF32f"
       COOKIE_DOMAIN: "localhost:3000"
+  front:
+    image: hugo08/hugo_repo:trifront-3
+    ports:
+      - "8080:80"
+    environment:
+      VUE_APP_ADDRESS: "back"
   
 
 
