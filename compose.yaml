@@ -11,7 +11,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - pg_data:/var/lib/postgresql/data
+      - ./tricountvolumes:/var/lib/postgresql/data
   back:
     image: hugo08/hugo_repo:triback-20
     ports:
@@ -31,8 +31,3 @@ services:
       - "8080:80"
     environment:
       VUE_APP_ADDRESS: "back"
-  
-
-
-volumes:
-  pg_data:
