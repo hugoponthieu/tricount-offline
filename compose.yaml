@@ -12,10 +12,12 @@ services:
       - "5432:5432"
     volumes:
       - ./tricountvolumes:/var/lib/postgresql/data
+    restart: always
   back:
     image: hugo08/hugo_repo:triback-20
     ports:
     - "3000:3000"
+    restart: always
     environment:
       PG_USER: "tricount"
       PG_HOST: "postgrestri"
@@ -31,3 +33,4 @@ services:
       - "8080:80"
     environment:
       VUE_APP_ADDRESS: "back"
+    restart: always
